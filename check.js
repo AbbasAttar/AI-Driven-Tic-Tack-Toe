@@ -1,3 +1,6 @@
+function equals3(a, b, c) {
+  return a == b && b == c && a != "";
+}
 function checkWinner() {
   let winner = null;
 
@@ -23,7 +26,16 @@ function checkWinner() {
     winner = board[2][0];
   }
 
-  if (winner == null && available.length == 0) {
+  let openSpots = 0;
+  for (let i = 0; i < 3; i++) {
+    for (let j = 0; j < 3; j++) {
+      if (board[i][j] == "") {
+        openSpots++;
+      }
+    }
+  }
+
+  if (winner == null && openSpots == 0) {
     return "tie";
   } else {
     return winner;
